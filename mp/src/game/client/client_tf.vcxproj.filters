@@ -1931,6 +1931,9 @@
     <ClInclude Include="tf\tf_hud_chat.h">
       <Filter>Source Files\TF</Filter>
     </ClInclude>
+    <ClInclude Include="tf\tf_hud_crosshair.h">
+      <Filter>Source Files\TF</Filter>
+    </ClInclude>
     <ClInclude Include="tf\tf_hud_flagstatus.h">
       <Filter>Source Files\TF</Filter>
     </ClInclude>
@@ -3605,6 +3608,9 @@
       <Filter>Source Files\TF</Filter>
     </ClCompile>
     <ClCompile Include="tf\tf_hud_cloakmeter.cpp">
+      <Filter>Source Files\TF</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\tf_hud_crosshair.cpp">
       <Filter>Source Files\TF</Filter>
     </ClCompile>
     <ClCompile Include="tf\tf_hud_damageindicator.cpp">

@@ -62,7 +62,7 @@ extern ConVar replay_rendersetting_renderglow;
 
 #if defined( TF_CLIENT_DLL )
 #include "c_tf_player.h"
-#include "econ_item_description.h"
+//#include "econ_item_description.h"
 #endif
 
 // memdbgon must be the last include file in a .cpp file!!!
@@ -487,11 +487,13 @@ bool ClientModeShared::ShouldDrawEntity(C_BaseEntity *pEnt)
 //-----------------------------------------------------------------------------
 bool ClientModeShared::ShouldDrawParticles( )
 {
+	/*
 #ifdef TF_CLIENT_DLL
 	C_TFPlayer *pTFPlayer = C_TFPlayer::GetLocalTFPlayer();
 	if ( pTFPlayer && !pTFPlayer->ShouldPlayerDrawParticles() )
 		return false;
 #endif // TF_CLIENT_DLL
+	*/
 
 	return true;
 }
@@ -1227,6 +1229,7 @@ void ClientModeShared::FireGameEvent( IGameEvent *event )
 			}
 		}
 	}
+	/*
 #if defined( TF_CLIENT_DLL )
 	else if ( Q_strcmp( "item_found", eventname ) == 0 )
 	{
@@ -1365,6 +1368,7 @@ void ClientModeShared::FireGameEvent( IGameEvent *event )
 		}		
 	}
 #endif
+	*/
 #if defined( REPLAY_ENABLED )
 	else if ( !V_strcmp( "replay_servererror", eventname ) )
 	{

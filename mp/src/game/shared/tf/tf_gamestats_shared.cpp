@@ -4,6 +4,8 @@
 //
 //=============================================================================//
 
+#include "cbase.h"
+
 #ifdef GAME_DLL
 #include "GameStats.h"
 #endif

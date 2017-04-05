@@ -20,6 +20,7 @@
 #endif
 
 #define GRENADE_GAS_TIMER	3.0f //Seconds
+#define TF_HALLUCINATION_RADIUS 35.0f
 
 //=============================================================================
 //
@@ -79,14 +80,14 @@ END_DATADESC()
 //-----------------------------------------------------------------------------
 // Purpose:
 //-----------------------------------------------------------------------------
-CTFGrenadeGasProjectile* CTFGrenadeGasProjectile::Create( const Vector &position, const QAngle &angles, 
-																const Vector &velocity, const AngularImpulse &angVelocity, 
-																CBaseCombatCharacter *pOwner, const CTFWeaponInfo &weaponInfo, float timer, int iFlags )
+CTFGrenadeGasProjectile* CTFGrenadeGasProjectile::Create(const Vector &position, const QAngle &angles,
+const Vector &velocity, const AngularImpulse &angVelocity,
+CBaseCombatCharacter *pOwner, const CTFWeaponInfo &weaponInfo, int iFlags)
 {
-	CTFGrenadeGasProjectile *pGrenade = static_cast<CTFGrenadeGasProjectile*>( CTFWeaponBaseGrenadeProj::Create( "tf_weapon_grenade_gas_projectile", position, angles, velocity, angVelocity, pOwner, weaponInfo, timer, iFlags ) );
-	if ( pGrenade )
+	CTFGrenadeGasProjectile *pGrenade = static_cast<CTFGrenadeGasProjectile*>(CTFWeaponBaseGrenadeProj::Create("tf_weapon_grenade_gas_projectile", position, angles, velocity, angVelocity, pOwner, weaponInfo, iFlags));
+	if (pGrenade)
 	{
-		pGrenade->ApplyLocalAngularVelocityImpulse( angVelocity );	
+		pGrenade->ApplyLocalAngularVelocityImpulse(angVelocity);
 	}
 
 	return pGrenade;

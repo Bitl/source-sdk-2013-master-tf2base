@@ -8,6 +8,7 @@
 #include "tf_timer.h"
 
 
+#if 0
 static CUtlLinkedList<CTimer*,int> g_Timers;
 
 
@@ -115,3 +116,4 @@ void Timer_RemoveAll()
 	g_Timers.PurgeAndDeleteElements();
 }
 
+#endif

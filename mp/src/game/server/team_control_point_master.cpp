@@ -676,6 +676,7 @@ void CTeamControlPointMaster::CheckWinConditions( void )
 		{
 			bool bWinner = true;
 
+			/*
 #if defined( TF_DLL)
 			if ( TFGameRules() && TFGameRules()->IsInKothMode() )
 			{
@@ -698,6 +699,7 @@ void CTeamControlPointMaster::CheckWinConditions( void )
 				}
 			}
 #endif
+			*/
 			if ( bWinner )
 			{
 				TeamplayGameRules()->SetWinningTeam( iWinners, WINREASON_ALL_POINTS_CAPTURED, true, m_bSwitchTeamsOnWin );

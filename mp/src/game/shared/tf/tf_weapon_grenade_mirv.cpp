@@ -97,9 +97,9 @@ PRECACHE_WEAPON_REGISTER( tf_weapon_grenade_mirv_projectile );
 //-----------------------------------------------------------------------------
 CTFGrenadeMirvProjectile* CTFGrenadeMirvProjectile::Create( const Vector &position, const QAngle &angles, 
 															const Vector &velocity, const AngularImpulse &angVelocity, 
-															CBaseCombatCharacter *pOwner, const CTFWeaponInfo &weaponInfo, float timer, int iFlags )
+															CBaseCombatCharacter *pOwner, const CTFWeaponInfo &weaponInfo, int iFlags )
 {
-	CTFGrenadeMirvProjectile *pGrenade = static_cast<CTFGrenadeMirvProjectile*>( CTFWeaponBaseGrenadeProj::Create( "tf_weapon_grenade_mirv_projectile", position, angles, velocity, angVelocity, pOwner, weaponInfo, timer, iFlags ) );
+	CTFGrenadeMirvProjectile *pGrenade = static_cast<CTFGrenadeMirvProjectile*>( CTFWeaponBaseGrenadeProj::Create( "tf_weapon_grenade_mirv_projectile", position, angles, velocity, angVelocity, pOwner, weaponInfo, iFlags ) );
 	return pGrenade;
 }
 

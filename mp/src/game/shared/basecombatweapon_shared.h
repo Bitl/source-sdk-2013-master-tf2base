@@ -24,9 +24,9 @@
 #endif
 
 // Hacky
-#if defined ( TF_CLIENT_DLL ) || defined ( TF_DLL )
-#include "econ_entity.h"
-#endif // TF_CLIENT_DLL || TF_DLL
+//#if defined ( TF_CLIENT_DLL ) || defined ( TF_DLL )
+//#include "econ_entity.h"
+//#endif // TF_CLIENT_DLL || TF_DLL
 
 #if !defined( CLIENT_DLL )
 extern void OnBaseCombatWeaponCreated( CBaseCombatWeapon * );

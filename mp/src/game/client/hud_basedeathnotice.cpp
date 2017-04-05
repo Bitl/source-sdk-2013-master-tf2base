@@ -384,6 +384,7 @@ void CHudBaseDeathNotice::FireGameEvent( IGameEvent *event )
 	bool bPlayerDeath = EventIsPlayerDeath( pszEventName );
 	bool bObjectDeath = FStrEq( pszEventName, "object_destroyed" );
 
+	/*
 	bool bIsFeignDeath = event->GetInt( "death_flags" ) & TF_DEATH_FEIGN_DEATH;
 	if ( bPlayerDeath )
 	{
@@ -409,6 +410,7 @@ void CHudBaseDeathNotice::FireGameEvent( IGameEvent *event )
 			}
 		}
 	}
+	*/
 
 	// Add a new death message.  Note we always look it up by index rather than create a reference or pointer to it;
 	// additional messages may get added during this function that cause the underlying array to get realloced, so don't
@@ -457,12 +459,14 @@ void CHudBaseDeathNotice::FireGameEvent( IGameEvent *event )
 			bLocalPlayerInvolved = true;
 		}
 
+		/*
 		if ( event->GetInt( "death_flags" ) & TF_DEATH_AUSTRALIUM )
 		{
 			m_DeathNotices[iMsg].bCrit= true;
 			m_DeathNotices[iMsg].iconCritDeath = GetIcon( "d_australium", bLocalPlayerInvolved ? kDeathNoticeIcon_Inverted : kDeathNoticeIcon_Standard );
 		}
-		else if ( event->GetInt( "damagebits" ) & DMG_CRITICAL )
+		*/
+		if ( event->GetInt( "damagebits" ) & DMG_CRITICAL )
 		{
 			m_DeathNotices[iMsg].bCrit= true;
 			m_DeathNotices[iMsg].iconCritDeath = GetIcon( "d_crit", bLocalPlayerInvolved ? kDeathNoticeIcon_Inverted : kDeathNoticeIcon_Standard );
@@ -487,12 +491,14 @@ void CHudBaseDeathNotice::FireGameEvent( IGameEvent *event )
 			m_DeathNotices[iMsg].bSelfInflicted = true;
 			m_DeathNotices[iMsg].Killer.szName[0] = 0;
 
+			/*
 			if ( event->GetInt( "death_flags" ) & TF_DEATH_PURGATORY )
 			{
 				// special case icon for dying in purgatory
 				Q_strncpy( m_DeathNotices[iMsg].szIcon, "d_purgatory", ARRAYSIZE( m_DeathNotices[iMsg].szIcon ) );
 			}
-			else if ( event->GetInt( "damagebits" ) & DMG_FALL )
+			*/
+			if ( event->GetInt( "damagebits" ) & DMG_FALL )
 			{
 				// special case text for falling death
 				V_wcsncpy( m_DeathNotices[iMsg].wzInfoText, g_pVGuiLocalize->Find( "#DeathMsg_Fall" ), sizeof( m_DeathNotices[iMsg].wzInfoText ) );
@@ -609,6 +615,7 @@ void CHudBaseDeathNotice::FireGameEvent( IGameEvent *event )
 		const char *pszMsgKey = NULL;
 		int iEventType = event->GetInt( "eventtype" );
 
+		/*
 		bool bIsMvM = TFGameRules() && TFGameRules()->IsMannVsMachineMode();
 		if ( bIsMvM )
 		{
@@ -622,16 +629,20 @@ void CHudBaseDeathNotice::FireGameEvent( IGameEvent *event )
 		}
 
 		bool bIsHalloween2014 = TFGameRules() && TFGameRules()->IsHalloweenScenario( CTFGameRules::HALLOWEEN_SCENARIO_DOOMSDAY );
+		*/
 
 		switch ( iEventType )
 		{
 		case TF_FLAGEVENT_PICKUP: 
-			pszMsgKey = bIsHalloween2014 ? "#Msg_PickedUpFlagHalloween2014" : "#Msg_PickedUpFlag"; 
+			//pszMsgKey = bIsHalloween2014 ? "#Msg_PickedUpFlagHalloween2014" : "#Msg_PickedUpFlag"; 
+			pszMsgKey = "#Msg_PickedUpFlag";
 			break;
 		case TF_FLAGEVENT_CAPTURE: 
-			pszMsgKey = bIsHalloween2014 ? "#Msg_CapturedFlagHalloween2014" : "#Msg_CapturedFlag"; 
+			//pszMsgKey = bIsHalloween2014 ? "#Msg_CapturedFlagHalloween2014" : "#Msg_CapturedFlag"; 
+			pszMsgKey = "#Msg_CapturedFlag"; 
 			break;
 		case TF_FLAGEVENT_DEFEND: 
+			/*
 			if ( bIsMvM )
 			{
 				pszMsgKey = "#Msg_DefendedBomb";
@@ -640,7 +651,8 @@ void CHudBaseDeathNotice::FireGameEvent( IGameEvent *event )
 			{
 				pszMsgKey = bIsHalloween2014 ? "#Msg_DefendedFlagHalloween2014" : "#Msg_DefendedFlag";
 			}
-
+			*/
+			pszMsgKey = "#Msg_DefendedFlag";
 
 			break;
 

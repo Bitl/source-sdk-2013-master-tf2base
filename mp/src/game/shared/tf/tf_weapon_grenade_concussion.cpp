@@ -77,9 +77,9 @@ PRECACHE_WEAPON_REGISTER( tf_weapon_grenade_concussion_projectile );
 //-----------------------------------------------------------------------------
 CTFGrenadeConcussionProjectile* CTFGrenadeConcussionProjectile::Create( const Vector &position, const QAngle &angles, 
 																const Vector &velocity, const AngularImpulse &angVelocity, 
-																CBaseCombatCharacter *pOwner, const CTFWeaponInfo &weaponInfo, float timer, int iFlags )
+																CBaseCombatCharacter *pOwner, const CTFWeaponInfo &weaponInfo, int iFlags )
 {
-	CTFGrenadeConcussionProjectile *pGrenade = static_cast<CTFGrenadeConcussionProjectile*>( CTFWeaponBaseGrenadeProj::Create( "tf_weapon_grenade_concussion_projectile", position, angles, velocity, angVelocity, pOwner, weaponInfo, timer, iFlags ) );
+	CTFGrenadeConcussionProjectile *pGrenade = static_cast<CTFGrenadeConcussionProjectile*>( CTFWeaponBaseGrenadeProj::Create( "tf_weapon_grenade_concussion_projectile", position, angles, velocity, angVelocity, pOwner, weaponInfo, iFlags ) );
 	if ( pGrenade )
 	{
 		pGrenade->ApplyLocalAngularVelocityImpulse( angVelocity );
@@ -166,7 +166,7 @@ void CTFGrenadeConcussionProjectile::Explode( trace_t *pTrace, int bitsDamageTyp
 	}
 
 	// Explosion effect on client
-	SendDispatchEffect();
+	//SendDispatchEffect();
 
 	// Explosion sound.
 	CSoundEnt::InsertSound( SOUND_COMBAT, GetAbsOrigin(), BASEGRENADE_EXPLOSION_VOLUME, 3.0 );
@@ -178,6 +178,7 @@ void CTFGrenadeConcussionProjectile::Explode( trace_t *pTrace, int bitsDamageTyp
 	RadiusDamage( info, GetAbsOrigin(), m_DmgRadius, CLASS_NONE, NULL );
 
 	// Concussion.
+	/*
 	CBaseEntity *pEntityList[64];
 	int nEntityCount = UTIL_EntitiesInSphere( pEntityList, 64, GetAbsOrigin(), m_DmgRadius, FL_CLIENT );
 	for ( int iEntity = 0; iEntity < nEntityCount; ++iEntity )
@@ -192,6 +193,7 @@ void CTFGrenadeConcussionProjectile::Explode( trace_t *pTrace, int bitsDamageTyp
 			pTestPlayer->m_Shared.Concussion( this, m_DmgRadius );
 		}
 	}
+	*/
 
 	if ( tf_grenade_show_radius.GetBool() )
 	{

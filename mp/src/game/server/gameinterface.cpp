@@ -92,17 +92,17 @@
 
 
 #ifdef TF_DLL
-#include "gc_clientsystem.h"
-#include "econ_item_inventory.h"
-#include "steamworks_gamestats.h"
-#include "tf/tf_gc_server.h"
+#//include "gc_clientsystem.h"
+//#include "econ_item_inventory.h"
+//#include "steamworks_gamestats.h"
+//#include "tf/tf_gc_server.h"
 #include "tf_gamerules.h"
-#include "tf_lobby.h"
-#include "player_vs_environment/tf_population_manager.h"
-#include "workshop/maps_workshop.h"
+//#include "tf_lobby.h"
+//#include "player_vs_environment/tf_population_manager.h"
+//#include "workshop/maps_workshop.h"
 
-extern ConVar tf_mm_trusted;
-extern ConVar tf_mm_servermode;
+//extern ConVar tf_mm_trusted;
+//extern ConVar tf_mm_servermode;
 #endif
 
 #ifdef USE_NAV_MESH
@@ -1157,11 +1157,13 @@ void CServerGameDLL::GameServerSteamAPIActivated( void )
 	}
 #endif
 
+	/*
 #ifdef TF_DLL
 	GCClientSystem()->GameServerActivate();
 	InventoryManager()->GameServerSteamAPIActivated();
 	TFMapsWorkshop()->GameServerSteamAPIActivated();
 #endif
+	*/
 }
 
 //-----------------------------------------------------------------------------
@@ -1175,9 +1177,11 @@ void CServerGameDLL::GameServerSteamAPIShutdown( void )
 		steamgameserverapicontext->Clear();
 	}
 #endif
+	/*
 #ifdef TF_DLL
 	GCClientSystem()->Shutdown();
 #endif
+	*/
 }
 
 //-----------------------------------------------------------------------------
@@ -1836,10 +1840,12 @@ bool CServerGameDLL::ShouldHideServer( void )
 	if ( gpGlobals->eLoadType == MapLoad_Background )
 		return true;
 
+	/*
 	#if defined( TF_DLL )
 		if ( GTFGCClientSystem()->ShouldHideServer() )
 			return true;
 	#endif
+	*/
 	return false;
 }
 
@@ -1862,11 +1868,15 @@ void CServerGameDLL::InvalidateMdlCache()
 // interface to the new GC based lobby system
 IServerGCLobby *CServerGameDLL::GetServerGCLobby()
 {
+	/*
 #ifdef TF_DLL
 	return GTFGCClientSystem();
 #else	
 	return NULL;
 #endif
+	*/
+
+	return NULL;
 }
 
 
@@ -1881,13 +1891,16 @@ void CServerGameDLL::SetServerHibernation( bool bHibernating )
 	}
 #endif
 
+	/*
 #ifdef TF_DLL
 	GTFGCClientSystem()->SetHibernation( bHibernating );
 #endif
+	*/
 }
 
 const char *CServerGameDLL::GetServerBrowserMapOverride()
 {
+	/*
 #ifdef TF_DLL
 	if ( TFGameRules() && TFGameRules()->IsMannVsMachineMode() )
 	{
@@ -1898,6 +1911,7 @@ const char *CServerGameDLL::GetServerBrowserMapOverride()
 		}
 	}
 #endif
+	*/
 	return NULL;
 }
 
@@ -1905,6 +1919,7 @@ const char *CServerGameDLL::GetServerBrowserGameData()
 {
 	CUtlString sResult;
 
+	/*
 #ifdef TF_DLL
 	sResult.Format( "tf_mm_trusted:%d,tf_mm_servermode:%d", tf_mm_trusted.GetInt(), tf_mm_servermode.GetInt() );
 
@@ -1922,6 +1937,7 @@ const char *CServerGameDLL::GetServerBrowserGameData()
 		sResult.Append( CFmtStr( ",mannup:%d", ( pLobby && pLobby->GetPlayingForBraggingRights() ) ? 1 : 0  ) );
 	}
 #endif
+	*/
 
 	static char rchResult[2048];
 	V_strcpy_safe( rchResult, sResult );
@@ -1941,9 +1957,11 @@ void CServerGameDLL::Status( void (*print) (const char *fmt, ...) )
 void CServerGameDLL::PrepareLevelResources( /* in/out */ char *pszMapName, size_t nMapNameSize,
                                             /* in/out */ char *pszMapFile, size_t nMapFileSize )
 {
+	/*
 #ifdef TF_DLL
 	TFMapsWorkshop()->PrepareLevelResources( pszMapName, nMapNameSize, pszMapFile, nMapFileSize );
 #endif // TF_DLL
+	*/
 }
 
 //-----------------------------------------------------------------------------
@@ -1952,9 +1970,11 @@ CServerGameDLL::AsyncPrepareLevelResources( /* in/out */ char *pszMapName, size_
                                             /* in/out */ char *pszMapFile, size_t nMapFileSize,
                                             float *flProgress /* = NULL */ )
 {
+	/*
 #ifdef TF_DLL
 	return TFMapsWorkshop()->AsyncPrepareLevelResources( pszMapName, nMapNameSize, pszMapFile, nMapFileSize, flProgress );
 #endif // TF_DLL
+	*/
 
 	if ( flProgress )
 	{
@@ -1966,9 +1986,11 @@ CServerGameDLL::AsyncPrepareLevelResources( /* in/out */ char *pszMapName, size_
 //-----------------------------------------------------------------------------
 IServerGameDLL::eCanProvideLevelResult CServerGameDLL::CanProvideLevel( /* in/out */ char *pMapName, int nMapNameMax )
 {
+	/*
 #ifdef TF_DLL
 	return TFMapsWorkshop()->OnCanProvideLevel( pMapName, nMapNameMax );
 #endif // TF_DLL
+	*/
 	return IServerGameDLL::eCanProvideLevel_CannotProvide;
 }
 
@@ -2693,6 +2715,7 @@ void CServerGameClients::ClientActive( edict_t *pEdict, bool bLoadGame )
 	CSoundEnvelopeController::GetController().CheckLoopingSoundsForPlayer( pPlayer );
 	SceneManager_ClientActive( pPlayer );
 
+	/*
 	#if defined( TF_DLL )
 		Assert( pPlayer );
 		if ( pPlayer && !pPlayer->IsFakeClient() && !pPlayer->IsHLTV() && !pPlayer->IsReplay() )
@@ -2711,6 +2734,7 @@ void CServerGameClients::ClientActive( edict_t *pEdict, bool bLoadGame )
 			}
 		}
 	#endif
+	*/
 }
 
 //-----------------------------------------------------------------------------
@@ -2771,6 +2795,7 @@ void CServerGameClients::ClientDisconnect( edict_t *pEdict )
 		// Make sure anything we "own" is simulated by the server from now on
 		player->ClearPlayerSimulationList();
 #endif
+		/*
 		#if defined( TF_DLL )
 			if ( !player->IsFakeClient() )
 			{
@@ -2788,6 +2813,7 @@ void CServerGameClients::ClientDisconnect( edict_t *pEdict )
 				}
 			}
 		#endif
+		*/
 	}
 }
 

@@ -38,13 +38,14 @@ extern const ConVar *sv_cheats;
 #endif
 #endif
 
-
+/*
 #if !defined(NO_STEAM) && defined(CLIENT_DLL)
 #if defined(TF_CLIENT_DLL) ||  defined(CSTRIKE_DLL)
 #define STEAMWORKS_GAMESTATS_ACTIVE
 #include "steamworks_gamestats.h"
 #endif
 #endif
+*/
 
 #ifdef CLIENT_DLL
 	// Ensure this is declared in the client dll so everyone finds the same one.

@@ -26,7 +26,7 @@
 
 #ifdef TF_DLL
 #include "tf_player.h"
-#include "bot/tf_bot.h"
+//#include "bot/tf_bot.h"
 #endif
 
 #include "Color.h"
@@ -176,6 +176,7 @@ bool CFuncNavCost::IsApplicableTo( CBaseCombatCharacter *who ) const
 		}
 	}
 
+	/*
 #ifdef TF_DLL
 	// TODO: Make group comparison efficient and move to base combat character
 	CTFBot *bot = ToTFBot( who );
@@ -260,6 +261,7 @@ bool CFuncNavCost::IsApplicableTo( CBaseCombatCharacter *who ) const
 		return false;
 	}
 #endif
+	*/
 
 	return false;
 }

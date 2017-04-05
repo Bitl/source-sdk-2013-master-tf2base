@@ -21,6 +21,8 @@
 #include "te_effect_dispatch.h"
 #endif
 
+ConVar tf_smoke_bomb_time("tf_smoke_bomb_time", "5.0", FCVAR_CHEAT | FCVAR_REPLICATED | FCVAR_DEVELOPMENTONLY);
+
 //=============================================================================
 //
 // TF Smoke Bomb tables.
@@ -47,8 +49,6 @@ PRECACHE_WEAPON_REGISTER( tf_weapon_grenade_smoke_bomb );
 
 BEGIN_DATADESC( CTFGrenadeSmokeBomb )
 END_DATADESC()
-
-extern ConVar tf_smoke_bomb_time;
 
 //-----------------------------------------------------------------------------
 // Purpose:

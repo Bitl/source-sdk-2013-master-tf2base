@@ -345,7 +345,7 @@ private:
 	bool							m_bCachedCountdownState;
 	CControlPointCountdown			*m_pCountdown;
 
-	DHANDLE< CExLabel >				m_pCPTimerLabel; // used to display CCPTimerLogic countdowns
+	DHANDLE< CTFLabel >				m_pCPTimerLabel; // used to display CCPTimerLogic countdowns
 	DHANDLE< vgui::ImagePanel >		m_pCPTimerBG; // used to display CCPTimerLogic countdowns
 	float							m_flCPTimerTime;
 	bool							m_bRedText;

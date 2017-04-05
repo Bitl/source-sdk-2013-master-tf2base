@@ -561,6 +561,7 @@ void CParticleProperty::UpdateControlPoint( ParticleEffectList_t *pEffect, int i
 	float flOffset = 0.0f;
 	bool bUsingHeadOrigin = false;
 
+	/*
 #ifdef TF_CLIENT_DLL
 
 	CBaseEntity *pWearable = (CBaseEntity*) pPoint->hEntity.Get();
@@ -597,6 +598,7 @@ void CParticleProperty::UpdateControlPoint( ParticleEffectList_t *pEffect, int i
 		}
 	}
 #endif
+	*/
 
 	if ( !bUsingHeadOrigin )
 	{

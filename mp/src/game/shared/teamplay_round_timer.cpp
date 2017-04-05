@@ -591,6 +591,7 @@ const char *CTeamRoundTimer::GetTimeWarningSound( int nWarning )
 	case RT_WARNING_5SECS:
 		if ( m_nState == RT_STATE_SETUP )
 		{
+			/*
 #ifdef TF_CLIENT_DLL
 			if ( TFGameRules() && TFGameRules()->IsHalloweenScenario( CTFGameRules::HALLOWEEN_SCENARIO_DOOMSDAY ) )
 			{
@@ -601,6 +602,8 @@ const char *CTeamRoundTimer::GetTimeWarningSound( int nWarning )
 			{
 				pszRetVal = ROUND_SETUP_5SECS;
 			}
+			*/
+			pszRetVal = ROUND_SETUP_5SECS;
 		}
 		else
 		{
@@ -610,6 +613,7 @@ const char *CTeamRoundTimer::GetTimeWarningSound( int nWarning )
 	case RT_WARNING_4SECS:
 		if ( m_nState == RT_STATE_SETUP )
 		{
+			/*
 #ifdef TF_CLIENT_DLL
 			if ( TFGameRules() && TFGameRules()->IsHalloweenScenario( CTFGameRules::HALLOWEEN_SCENARIO_DOOMSDAY ) )
 			{
@@ -620,6 +624,8 @@ const char *CTeamRoundTimer::GetTimeWarningSound( int nWarning )
 			{
 				pszRetVal = ROUND_SETUP_4SECS;
 			}
+			*/
+			pszRetVal = ROUND_SETUP_4SECS;
 		}
 		else
 		{
@@ -629,6 +635,7 @@ const char *CTeamRoundTimer::GetTimeWarningSound( int nWarning )
 	case RT_WARNING_3SECS:
 		if ( m_nState == RT_STATE_SETUP )
 		{
+			/*
 #ifdef TF_CLIENT_DLL
 			if ( TFGameRules() && TFGameRules()->IsHalloweenScenario( CTFGameRules::HALLOWEEN_SCENARIO_DOOMSDAY ) )
 			{
@@ -639,6 +646,8 @@ const char *CTeamRoundTimer::GetTimeWarningSound( int nWarning )
 			{
 				pszRetVal = ROUND_SETUP_3SECS;
 			}
+			*/
+			pszRetVal = ROUND_SETUP_3SECS;
 		}
 		else
 		{
@@ -648,6 +657,7 @@ const char *CTeamRoundTimer::GetTimeWarningSound( int nWarning )
 	case RT_WARNING_2SECS:
 		if ( m_nState == RT_STATE_SETUP )
 		{
+			/*
 #ifdef TF_CLIENT_DLL
 			if ( TFGameRules() && TFGameRules()->IsHalloweenScenario( CTFGameRules::HALLOWEEN_SCENARIO_DOOMSDAY ) )
 			{
@@ -658,6 +668,8 @@ const char *CTeamRoundTimer::GetTimeWarningSound( int nWarning )
 			{
 				pszRetVal = ROUND_SETUP_2SECS;
 			}
+			*/
+			pszRetVal = ROUND_SETUP_2SECS;
 		}
 		else
 		{
@@ -667,6 +679,7 @@ const char *CTeamRoundTimer::GetTimeWarningSound( int nWarning )
 	case RT_WARNING_1SECS:
 		if ( m_nState == RT_STATE_SETUP )
 		{
+			/*
 #ifdef TF_CLIENT_DLL
 			if ( TFGameRules() && TFGameRules()->IsHalloweenScenario( CTFGameRules::HALLOWEEN_SCENARIO_DOOMSDAY ) )
 			{
@@ -677,6 +690,9 @@ const char *CTeamRoundTimer::GetTimeWarningSound( int nWarning )
 			{
 				pszRetVal = ROUND_SETUP_1SECS;
 			}
+			*/
+
+			pszRetVal = ROUND_SETUP_1SECS;
 		}
 		else
 		{
@@ -698,11 +714,13 @@ const char *CTeamRoundTimer::GetTimeWarningSound( int nWarning )
 //-----------------------------------------------------------------------------
 void CTeamRoundTimer::SendTimeWarning( int nWarning )
 {
+	/*
 #if defined( TF_CLIENT_DLL )
 	// don't play any time warnings for Helltower
 	if ( TFGameRules() && TFGameRules()->IsHalloweenScenario( CTFGameRules::HALLOWEEN_SCENARIO_HIGHTOWER ) )
 		return;
 #endif
+	*/
 
 	// don't play sounds if the level designer has turned them off or if it's during the WaitingForPlayers time
 	if ( !m_bTimerPaused && m_bAutoCountdown && !TeamplayRoundBasedRules()->IsInWaitingForPlayers() )

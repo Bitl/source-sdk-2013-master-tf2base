@@ -641,6 +641,7 @@ bool CRopeManager::IsHolidayLightMode( void )
 		return false;
 	}
 
+	/*
 #ifdef TF_CLIENT_DLL
 	if ( TFGameRules() && TFGameRules()->IsPowerupMode() )
 	{
@@ -649,6 +650,7 @@ bool CRopeManager::IsHolidayLightMode( void )
 		return false;
 	}
 #endif
+	*/
 
 	bool bDrawHolidayLights = false;
 

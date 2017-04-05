@@ -1731,7 +1731,7 @@ void C_TFPlayer::TurnOffTauntCam( void )
 		return;	
 
 	Vector vecOffset;
-	::input->CAM_GetCameraOffset( vecOffset );
+
 	tf_tauntcam_pitch.SetValue( vecOffset[PITCH] - m_angTauntPredViewAngles[PITCH] );
 	tf_tauntcam_yaw.SetValue( vecOffset[YAW] - m_angTauntPredViewAngles[YAW] );
 
@@ -2548,7 +2548,7 @@ void C_TFPlayer::CalcDeathCamView(Vector& eyeOrigin, QAngle& eyeAngles, float& f
 	interpolation = SimpleSpline( interpolation );
 
 	m_flObserverChaseDistance += gpGlobals->frametime*48.0f;
-	m_flObserverChaseDistance = clamp( m_flObserverChaseDistance, 16, CHASE_CAM_DISTANCE );
+	m_flObserverChaseDistance = clamp(m_flObserverChaseDistance, CHASE_CAM_DISTANCE_MIN, CHASE_CAM_DISTANCE_MAX);
 
 	QAngle aForward = eyeAngles = EyeAngles();
 	Vector origin = EyePosition();			

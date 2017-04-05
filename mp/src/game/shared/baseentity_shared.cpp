@@ -1759,6 +1759,7 @@ void CBaseEntity::FireBullets( const FireBulletsInfo_t &info )
 				pShootThroughPortal = NULL;
 			}
 #elif TF_DLL
+			/*
 			CTraceFilterIgnoreFriendlyCombatItems traceFilterCombatItem( this, COLLISION_GROUP_NONE, GetTeamNumber() );
 			if ( TFGameRules() && TFGameRules()->GameModeUsesUpgrades() )
 			{
@@ -1769,6 +1770,8 @@ void CBaseEntity::FireBullets( const FireBulletsInfo_t &info )
 			{
 				AI_TraceLine(info.m_vecSrc, vecEnd, MASK_SHOT, &traceFilter, &tr);
 			}
+			*/
+			AI_TraceLine(info.m_vecSrc, vecEnd, MASK_SHOT, &traceFilter, &tr);
 #else
 			AI_TraceLine(info.m_vecSrc, vecEnd, MASK_SHOT, &traceFilter, &tr);
 #endif //#ifdef PORTAL

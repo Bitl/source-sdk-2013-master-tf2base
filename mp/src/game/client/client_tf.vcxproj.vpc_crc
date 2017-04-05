@@ -1,7 +1,7 @@
 [vpc crc file version 2]
 b9c20ec3 C:\Users\BITL\Documents\GitHub\source-sdk-2013-master-tf2base\mp\src\devtools\bin\vpc.exe
 _Nc_VS2013/vpcgame:tf_
-72effc71 client_tf.vpc
+92f0c8c0 client_tf.vpc
 16dd51ec ..\..\game\client\client_base.vpc
 4832e67a ..\..\vpc_scripts\source_dll_base.vpc
 d752cf80 ..\..\vpc_scripts\platform_dirs.vpc

@@ -85,7 +85,7 @@ PRECACHE_WEAPON_REGISTER( tf_weapon_grenade_nail_projectile );
 //-----------------------------------------------------------------------------
 CTFGrenadeNailProjectile* CTFGrenadeNailProjectile::Create( const Vector &position, const QAngle &angles, 
 																const Vector &velocity, const AngularImpulse &angVelocity, 
-																CBaseCombatCharacter *pOwner, const CTFWeaponInfo &weaponInfo, float timer, int iFlags )
+																CBaseCombatCharacter *pOwner, const CTFWeaponInfo &weaponInfo, int iFlags )
 {
 	// Nail grenades are always thrown like discs
 	QAngle vecCustomAngles = angles;
@@ -93,7 +93,7 @@ CTFGrenadeNailProjectile* CTFGrenadeNailProjectile::Create( const Vector &positi
 	vecCustomAngles.z = clamp( vecCustomAngles.x, -10,10 );
 	Vector vecCustomAngVelocity = vec3_origin;
 	vecCustomAngVelocity.z = RandomFloat( -600, 600 );
-	CTFGrenadeNailProjectile *pGrenade = static_cast<CTFGrenadeNailProjectile*>( CTFWeaponBaseGrenadeProj::Create( "tf_weapon_grenade_nail_projectile", position, vecCustomAngles, velocity, vecCustomAngVelocity, pOwner, weaponInfo, timer, iFlags ) );
+	CTFGrenadeNailProjectile *pGrenade = static_cast<CTFGrenadeNailProjectile*>( CTFWeaponBaseGrenadeProj::Create( "tf_weapon_grenade_nail_projectile", position, vecCustomAngles, velocity, vecCustomAngVelocity, pOwner, weaponInfo, iFlags ) );
 	return pGrenade;
 }
 
@@ -214,10 +214,11 @@ void CTFGrenadeNailProjectile::EmitNails( void )
 		BaseClass::Detonate();
 		return;
 	}
-
+	/*
 	Vector forward, up;
 	float flAngleToAdd = random->RandomFloat( 30, 40 );
 
+	
 	// else release some nails
 	for ( int i=0; i < 4 ;i++ )
 	{
@@ -232,6 +233,7 @@ void CTFGrenadeNailProjectile::EmitNails( void )
 			pNail->SetDamage( 18 );
 		}
 	}
+	*/
 
 	SetNextThink( gpGlobals->curtime + 0.1 );
 }

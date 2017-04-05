@@ -293,6 +293,7 @@ enum
 	TF_WEAPON_SENTRY_ROCKET,
 	TF_WEAPON_DISPENSER,
 	TF_WEAPON_INVIS,
+	TF_WEAPON_FLAG,
 
 	TF_WEAPON_COUNT
 };
@@ -363,6 +364,8 @@ enum
 	// If you add a new condition that shouldn't have this behavior, add it before this section.
 	TF_COND_HEALTH_BUFF,
 	TF_COND_BURNING,
+
+	TF_COND_SMOKE_BOMB,
 
 	// Add new conditions that should be affected by healing here
 

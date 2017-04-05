@@ -14,7 +14,7 @@
 
 #ifdef TF_DLL
 #include "tf/tf_gamerules.h"
-#include "tf/tf_voteissues.h"
+//#include "tf/tf_voteissues.h"
 #endif
 
 // memdbgon must be the last include file in a .cpp file!!!
@@ -331,10 +331,12 @@ int CVoteController::UpdateTransmitState( void )
 //-----------------------------------------------------------------------------
 bool CVoteController::IsVoteSystemEnabled( void )
 {
+	/*
 #ifdef TF_DLL
 	if ( TFGameRules() && TFGameRules()->IsCompetitiveMode() )
 		return false;
 #endif // TF_DLL
+	*/
 
 	return sv_allow_votes.GetBool();
 }
@@ -827,6 +829,7 @@ bool CVoteController::IsValidVoter( CBasePlayer *pWhom )
 	if ( pWhom->IsReplay() )
 		return false;
 
+	/*
 #ifdef TF_DLL
 	if ( TFGameRules() && TFGameRules()->IsMannVsMachineMode() )
 	{
@@ -834,6 +837,7 @@ bool CVoteController::IsValidVoter( CBasePlayer *pWhom )
 			return false;
 	}
 #endif // TF_DLL
+	*/
 
 	return true;
 }
@@ -987,6 +991,7 @@ void CVoteController::AddPlayerToNameLockedList( CSteamID steamID, float flDurat
 //-----------------------------------------------------------------------------
 bool CVoteController::IsPlayerBeingKicked( CBasePlayer *pPlayer )
 {
+	/*
 #ifdef TF_DLL
 	if ( pPlayer && m_iActiveIssueIndex != INVALID_ISSUE )
 	{
@@ -997,6 +1002,7 @@ bool CVoteController::IsPlayerBeingKicked( CBasePlayer *pPlayer )
 		}
 	}
 #endif // TF_DLL
+	*/
 
 	return false;
 }
@@ -1085,12 +1091,14 @@ void CBaseIssue::OnVoteFailed( int iEntityHoldingVote )
 			{
 				int nTime = sv_vote_failure_timer.GetInt();
 
+				/*
 #ifdef TF_DLL
 				if ( TFGameRules() && TFGameRules()->IsMannVsMachineMode() )
 				{
 					nTime = sv_vote_failure_timer_mvm.GetInt();
 				}
 #endif // TF_DLL
+				*/
 
 				pFailedVote->flLockoutTime = gpGlobals->curtime + nTime;
 

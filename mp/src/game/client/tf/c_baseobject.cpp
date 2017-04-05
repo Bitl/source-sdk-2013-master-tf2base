@@ -643,7 +643,7 @@ const char *C_BaseObject::GetTargetDescription( void ) const
 //-----------------------------------------------------------------------------
 // Purpose: Get a text description for the object target (more verbose)
 //-----------------------------------------------------------------------------
-char *C_BaseObject::GetIDString( void )
+const char *C_BaseObject::GetIDString( void )
 {
 	m_szIDString[0] = 0;
 	RecalculateIDString();

@@ -9,6 +9,12 @@
 #include "shake.h"
 #include "voice_gamemgr.h"
 
+// NVNT include to register in haptic user messages
+#include "haptics/haptic_msgs.h"
+
+// memdbgon must be the last include file in a .cpp file!!!
+#include "tier0/memdbgon.h"
+
 void RegisterUserMessages()
 {
 	usermessages->Register( "Geiger", 1 );		// geiger info data
@@ -48,5 +54,10 @@ void RegisterUserMessages()
 	usermessages->Register( "HudNotifyCustom", -1 );
 
 	usermessages->Register( "PlayerStatsUpdate", -1 );
+
+#ifndef _X360
+	// NVNT register haptic user messages
+	RegisterHapticMessages();
+#endif
 }
 

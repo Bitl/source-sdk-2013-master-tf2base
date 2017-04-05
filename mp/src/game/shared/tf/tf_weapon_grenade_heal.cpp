@@ -81,9 +81,9 @@ END_DATADESC()
 //-----------------------------------------------------------------------------
 CTFGrenadeHealProjectile* CTFGrenadeHealProjectile::Create( const Vector &position, const QAngle &angles, 
 														 const Vector &velocity, const AngularImpulse &angVelocity, 
-														 CBaseCombatCharacter *pOwner, const CTFWeaponInfo &weaponInfo, float timer, int iFlags )
+														 CBaseCombatCharacter *pOwner, const CTFWeaponInfo &weaponInfo, int iFlags )
 {
-	CTFGrenadeHealProjectile *pGrenade = static_cast<CTFGrenadeHealProjectile*>( CTFWeaponBaseGrenadeProj::Create( "tf_weapon_grenade_heal_projectile", position, angles, velocity, angVelocity, pOwner, weaponInfo, timer, iFlags ) );
+	CTFGrenadeHealProjectile *pGrenade = static_cast<CTFGrenadeHealProjectile*>( CTFWeaponBaseGrenadeProj::Create( "tf_weapon_grenade_heal_projectile", position, angles, velocity, angVelocity, pOwner, weaponInfo, iFlags ) );
 	if ( pGrenade )
 	{
 		pGrenade->ApplyLocalAngularVelocityImpulse( angVelocity );	

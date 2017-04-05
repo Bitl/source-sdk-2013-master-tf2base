@@ -455,7 +455,7 @@ bool CTFGameRules::CanChangelevelBecauseOfTimeLimit( void )
 	// we're playing mini-rounds, and the master says we need to play all of them before changing (for maps like Dustbowl)
 	if ( !m_bForceMapReset && pMaster && pMaster->PlayingMiniRounds() && pMaster->ShouldPlayAllControlPointRounds() )
 	{
-		if ( pMaster->FindControlPointRoundToPlay() )
+		if ( pMaster->NumPlayableControlPointRounds() )
 		{
 			return false;
 		}
@@ -1164,6 +1164,7 @@ void CTFGameRules::RadiusDamage( const CTakeDamageInfo &info, const Vector &vecS
 		}
 		else if ( FStrEq( pcmd, "freezecam_taunt" ) )
 		{	
+			/*
 			// let's check this came from the client .dll and not the console
 			int iCmdPlayerID = pPlayer->GetUserID();
 			unsigned short mask = UTIL_GetAchievementEventMask();
@@ -1179,6 +1180,7 @@ void CTFGameRules::RadiusDamage( const CTakeDamageInfo &info, const Vector &vecS
 					pAchiever->AwardAchievement( g_TauntCamAchievements[ iClass ] );
 				}
 			}
+			*/
 
 			return true;
 		}
@@ -1318,7 +1320,7 @@ void CTFGameRules::RadiusDamage( const CTakeDamageInfo &info, const Vector &vecS
 		BaseClass::GoToIntermission();
 	}
 
-	bool CTFGameRules::FPlayerCanTakeDamage( CBasePlayer *pPlayer, CBaseEntity *pAttacker )
+	bool CTFGameRules::FPlayerCanTakeDamage( CBasePlayer *pPlayer, CBaseEntity *pAttacker, const CTakeDamageInfo & info )
 	{
 		// guard against NULL pointers if players disconnect
 		if ( !pPlayer || !pAttacker )
@@ -1341,7 +1343,7 @@ void CTFGameRules::RadiusDamage( const CTakeDamageInfo &info, const Vector &vecS
 			}
 		}
 
-		return BaseClass::FPlayerCanTakeDamage( pPlayer, pAttacker );
+		return BaseClass::FPlayerCanTakeDamage( pPlayer, pAttacker, info );
 	}
 
 Vector DropToGround( 
@@ -2828,7 +2830,7 @@ bool CTFGameRules::ShouldCollide( int collisionGroup0, int collisionGroup1 )
 	if ( collisionGroup0 > collisionGroup1 )
 	{
 		// swap so that lowest is always first
-		swap( collisionGroup0, collisionGroup1 );
+		V_swap( collisionGroup0, collisionGroup1 );
 	}
 	
 	//Don't stand on COLLISION_GROUP_WEAPONs

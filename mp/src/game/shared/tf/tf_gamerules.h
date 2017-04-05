@@ -80,7 +80,7 @@ struct PlayerRoundScore_t
 
 #define MAX_TEAMGOAL_STRING		256
 
-class CTFGameRules : public CTeamplayRoundBasedRules, public CGameEventListener
+class CTFGameRules : public CTeamplayRoundBasedRules
 {
 public:
 	DECLARE_CLASS( CTFGameRules, CTeamplayRoundBasedRules );
@@ -224,9 +224,9 @@ public:
 	bool CheckTimeLimit();
 	bool CheckWinLimit();
 	bool CheckCapsPerRound();
-	void CheckRespawnWaves();
+	//void CheckRespawnWaves();
 
-	virtual bool FPlayerCanTakeDamage( CBasePlayer *pPlayer, CBaseEntity *pAttacker );
+	virtual bool FPlayerCanTakeDamage( CBasePlayer *pPlayer, CBaseEntity *pAttacker, const CTakeDamageInfo & info );
 
 	// Spawing rules.
 	CBaseEntity *GetPlayerSpawnSpot( CBasePlayer *pPlayer );

@@ -118,6 +118,7 @@ int CTeamControlPointRound::CheckWinConditions( void )
 	{
 		bool bWinner = true;
 
+		/*
 #if defined( TF_DLL)
 		if ( TFGameRules() && TFGameRules()->IsInKothMode() )
 		{
@@ -140,6 +141,8 @@ int CTeamControlPointRound::CheckWinConditions( void )
 			}
 		}
 #endif
+		*/
+
 		if ( bWinner )
 		{
 			FireTeamWinOutput( iWinners );

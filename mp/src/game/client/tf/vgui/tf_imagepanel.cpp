@@ -73,6 +73,20 @@ void CTFImagePanel::UpdateBGImage( void )
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
+void CTFImagePanel::SetBGImage(int iTeamNum)
+{
+	if (m_iBGTeam >= 0 && m_iBGTeam < TF_TEAM_COUNT)
+	{
+		if (m_szTeamBG[iTeamNum] && m_szTeamBG[iTeamNum][0])
+		{
+			SetImage(m_szTeamBG[iTeamNum]);
+		}
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: 
+//-----------------------------------------------------------------------------
 void CTFImagePanel::FireGameEvent( IGameEvent * event )
 {
 	if ( FStrEq( "localplayer_changeteam", event->GetName() ) )

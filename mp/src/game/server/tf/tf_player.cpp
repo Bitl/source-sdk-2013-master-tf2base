@@ -2161,7 +2161,7 @@ void CTFPlayer::TraceAttack( const CTakeDamageInfo &info, const Vector &vecDir, 
 		// Prevent team damage here so blood doesn't appear
 		if ( info.GetAttacker()->IsPlayer() )
 		{
-			if ( !g_pGameRules->FPlayerCanTakeDamage( this, info.GetAttacker() ) )
+			if ( !g_pGameRules->FPlayerCanTakeDamage( this, info.GetAttacker(), info) )
 				return;
 		}
 	}
@@ -2427,7 +2427,7 @@ int CTFPlayer::OnTakeDamage( const CTakeDamageInfo &inputInfo )
 	}
 
 	// Make sure the player can take damage from the attacking entity
-	if ( !g_pGameRules->FPlayerCanTakeDamage( this, info.GetAttacker() ) )
+	if ( !g_pGameRules->FPlayerCanTakeDamage( this, info.GetAttacker(), info ) )
 	{
 		if ( bDebug )
 		{
@@ -4888,7 +4888,7 @@ public:
 		if ( ( pPlayer->GetTeamNumber() >= FIRST_GAME_TEAM ) && ( mp_forcecamera.GetInt() == OBS_ALLOW_TEAM ) )
 			return false;
 
-		if ( m_hAssociatedTeamEntity && ( mp_forcecamera.GetInt() == OBS_ALLOW_TEAM_ALL ) )
+		if ( m_hAssociatedTeamEntity && ( mp_forcecamera.GetInt() == OBS_ALLOW_TEAM ) )
 		{
 			// If we don't own the associated team entity, we can't use this point
 			if ( m_hAssociatedTeamEntity->GetTeamNumber() != pPlayer->GetTeamNumber() && pPlayer->GetTeamNumber() >= FIRST_GAME_TEAM )
@@ -5079,8 +5079,7 @@ bool CTFPlayer::IsValidObserverTarget(CBaseEntity * target)
 		switch ( mp_forcecamera.GetInt() )	
 		{
 		case OBS_ALLOW_ALL		:	break;
-		case OBS_ALLOW_TEAM     :
-		case OBS_ALLOW_TEAM_ALL :	if ( target->GetTeamNumber() != TEAM_UNASSIGNED && GetTeamNumber() != target->GetTeamNumber() )
+		case OBS_ALLOW_TEAM		:	if ( target->GetTeamNumber() != TEAM_UNASSIGNED && GetTeamNumber() != target->GetTeamNumber() )
 										return false;
 									break;
 		case OBS_ALLOW_NONE		:	return false;
@@ -5205,7 +5204,7 @@ CBaseEntity *CTFPlayer::FindNearestObservableTarget( Vector vecOrigin, float flM
 	{
 		// let's spectate our sentry instead, we didn't find any other engineers to spec
 		int iNumObjects = GetObjectCount();
-		for ( i=0;i<iNumObjects;i++ )
+		for ( int i=0;i<iNumObjects;i++ )
 		{
 			CBaseObject *pObj = GetObject(i);
 
@@ -5885,13 +5884,14 @@ int CTFPlayer::DrawDebugTextOverlays(void)
 //-----------------------------------------------------------------------------
 bool CTFPlayer::GetResponseSceneFromConcept( int iConcept, char *chSceneBuffer, int numSceneBufferBytes )
 {
-	AI_Response * const result = SpeakConcept( iConcept );
-	if ( result )
+	AI_Response result;
+	bool bResult = SpeakConcept(result, iConcept);
+	if (bResult)
 	{
-		result->GetResponse( chSceneBuffer, numSceneBufferBytes );
-		delete result;
+		const char *szResponse = result.GetResponsePtr();
+		Q_strncpy(chSceneBuffer, szResponse, numSceneBufferBytes);
 	}
-	return result != NULL;
+	return bResult;
 }
 
 //-----------------------------------------------------------------------------

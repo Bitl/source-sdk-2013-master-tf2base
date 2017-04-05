@@ -112,12 +112,14 @@
 #include "matsys_controls/matsyscontrols.h"
 #include "gamestats.h"
 #include "particle_parse.h"
+/*
 #if defined( TF_CLIENT_DLL )
 #include "rtime.h"
 #include "tf_hud_disconnect_prompt.h"
 #include "../engine/audio/public/sound.h"
 #include "tf_shared_content_manager.h"
 #endif
+*/
 #include "clientsteamcontext.h"
 #include "renamed_recvtable_compat.h"
 #include "mouthinfo.h"
@@ -131,18 +133,22 @@
 #include "haptics/haptic_utils.h"
 #include "haptics/haptic_msgs.h"
 
+/*
 #if defined( TF_CLIENT_DLL )
 #include "abuse_report.h"
 #endif
+*/
 
 #ifdef USES_ECON_ITEMS
 #include "econ_item_system.h"
 #endif // USES_ECON_ITEMS
 
+/*
 #if defined( TF_CLIENT_DLL )
 #include "econ/tool_items/custom_texture_cache.h"
 
 #endif
+*/
 
 #ifdef WORKSHOP_IMPORT_ENABLED
 #include "fbxsystem/fbxsystem.h"
@@ -1014,10 +1020,11 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 	IGameSystem::Add( PerfVisualBenchmark() );
 	IGameSystem::Add( MumbleSystem() );
 	
-	#if defined( TF_CLIENT_DLL )
+	/*
+#if defined( TF_CLIENT_DLL )
 	IGameSystem::Add( CustomTextureToolCacheGameSystem() );
 	IGameSystem::Add( TFSharedContentManager() );
-	#endif
+#endif
 
 #if defined( TF_CLIENT_DLL )
 	if ( g_AbuseReportMgr != NULL )
@@ -1025,6 +1032,7 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 		IGameSystem::Add( g_AbuseReportMgr );
 	}
 #endif
+	*/
 
 #if defined( CLIENT_DLL ) && defined( COPY_CHECK_STRESSTEST )
 	IGameSystem::Add( GetPredictionCopyTester() );
@@ -1262,9 +1270,11 @@ void CHLClient::HudUpdate( bool bActive )
 {
 	float frametime = gpGlobals->frametime;
 
+	/*
 #if defined( TF_CLIENT_DLL )
 	CRTime::UpdateRealTime();
 #endif
+	*/
 
 	GetClientVoiceMgr()->Frame( frametime );
 
@@ -2551,6 +2561,7 @@ void CHLClient::FileReceived( const char * fileName, unsigned int transferID )
 
 void CHLClient::ClientAdjustStartSoundParams( StartSoundParams_t& params )
 {
+	/*
 #ifdef TF_CLIENT_DLL
 	CBaseEntity *pEntity = ClientEntityList().GetEnt( params.soundsource );
 
@@ -2581,6 +2592,7 @@ void CHLClient::ClientAdjustStartSoundParams( StartSoundParams_t& params )
 		}
 	}
 #endif
+	*/
 }
 
 const char* CHLClient::TranslateEffectForVisionFilter( const char *pchEffectType, const char *pchEffectName )
@@ -2595,9 +2607,11 @@ bool CHLClient::DisconnectAttempt( void )
 {
 	bool bRet = false;
 
+	/*
 #if defined( TF_CLIENT_DLL )
 	bRet = HandleDisconnectAttempt();
 #endif
+	*/
 
 	return bRet;
 }

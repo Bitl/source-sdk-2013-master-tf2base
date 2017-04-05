@@ -334,6 +334,7 @@ int C_BaseViewModel::DrawModel( int flags )
 		}
 	}
 
+	/*
 #ifdef TF_CLIENT_DLL
 	CTFWeaponBase* pTFWeapon = dynamic_cast<CTFWeaponBase*>( pWeapon );
 	if ( ( flags & STUDIO_RENDER ) && pTFWeapon && pTFWeapon->m_viewmodelStatTrakAddon )
@@ -343,6 +344,7 @@ int C_BaseViewModel::DrawModel( int flags )
 		pTFWeapon->m_viewmodelStatTrakAddon->AddEffects( EF_NODRAW );
 	}
 #endif
+	*/
 
 	return ret;
 }

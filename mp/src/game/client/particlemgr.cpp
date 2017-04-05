@@ -26,9 +26,11 @@
 #include "filesystem.h"
 #include "particle_parse.h"
 #include "model_types.h"
+/*
 #ifdef TF_CLIENT_DLL
 #include "rtime.h"
 #endif
+*/
 #include "tier0/icommandline.h"
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"

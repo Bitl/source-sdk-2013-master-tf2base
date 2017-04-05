@@ -75,16 +75,18 @@ void FX_TFTracerSound( const Vector &start, const Vector &end, int iTracerType )
 		return;
 
 	CSoundParameters params;
-	if( C_BaseEntity::GetParametersForSound( pszSoundName, params, NULL ) )
+	if (C_BaseEntity::GetParametersForSound(pszSoundName, params, NULL))
 	{
 		// Get shot direction
 		Vector shotDir;
-		VectorSubtract( end, start, shotDir );
-		VectorNormalize( shotDir );
+		VectorSubtract(end, start, shotDir);
+		VectorNormalize(shotDir);
 
 		CLocalPlayerFilter filter;
-		enginesound->EmitSound(	filter, SOUND_FROM_WORLD, CHAN_STATIC, params.soundname, 
-			params.volume, SNDLVL_TO_ATTN(params.soundlevel), 0, params.pitch, &start, &shotDir, false);
+
+		// not sure if this fix is correct
+		enginesound->EmitSound(filter, SOUND_FROM_WORLD, CHAN_STATIC, params.soundname,
+			params.volume, SNDLVL_TO_ATTN(params.soundlevel), 0, params.pitch, 0, &start, &shotDir, nullptr, false);
 	}
 
 	// Don't play another bullet whiz for this client until this time has run out

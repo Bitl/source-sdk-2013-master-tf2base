@@ -74,9 +74,9 @@ PRECACHE_WEAPON_REGISTER( tf_weapon_grenade_napalm_projectile );
 //-----------------------------------------------------------------------------
 CTFGrenadeNapalmProjectile* CTFGrenadeNapalmProjectile::Create( const Vector &position, const QAngle &angles, 
 																const Vector &velocity, const AngularImpulse &angVelocity, 
-																CBaseCombatCharacter *pOwner, const CTFWeaponInfo &weaponInfo, float timer, int iFlags )
+																CBaseCombatCharacter *pOwner, const CTFWeaponInfo &weaponInfo, int iFlags )
 {
-	CTFGrenadeNapalmProjectile *pGrenade = static_cast<CTFGrenadeNapalmProjectile*>( CTFWeaponBaseGrenadeProj::Create( "tf_weapon_grenade_napalm_projectile", position, angles, velocity, angVelocity, pOwner, weaponInfo, timer, iFlags ) );
+	CTFGrenadeNapalmProjectile *pGrenade = static_cast<CTFGrenadeNapalmProjectile*>( CTFWeaponBaseGrenadeProj::Create( "tf_weapon_grenade_napalm_projectile", position, angles, velocity, angVelocity, pOwner, weaponInfo, iFlags ) );
 	if ( pGrenade )
 	{
 		pGrenade->ApplyLocalAngularVelocityImpulse( angVelocity );	

@@ -469,18 +469,18 @@ bool CTFStatPanel::ReadStats( void )
 	const CUtlVector< CDmxElement* > &aClassStatsList = pPlayerStats->GetArray< CDmxElement * >( "aClassStats" );
 	int iCount = aClassStatsList.Count();
 	m_aClassStats.SetCount( iCount );
-	for( int i = 0; i < m_aClassStats.Count(); i++ )
+	for (int i = 0; i < m_aClassStats.Count(); i++)
 	{
-		CDmxElement *pClass = aClassStatsList[ i ];
-		ClassStats_t &stat = m_aClassStats[ i ];
+		CDmxElement *pClass = aClassStatsList[i];
+		ClassStats_t &stat = m_aClassStats[i];
 
-		pClass->UnpackIntoStructure( &stat, s_ClassStatsUnpack );
+		pClass->UnpackIntoStructure(&stat, sizeof(stat), s_ClassStatsUnpack);
 
-		CDmxElement *pAccumulated = pClass->GetValue< CDmxElement * >( "accumulated" );
-		pAccumulated->UnpackIntoStructure( &stat.accumulated, s_RoundStatsUnpack );
+		CDmxElement *pAccumulated = pClass->GetValue< CDmxElement * >("accumulated");
+		pAccumulated->UnpackIntoStructure(&stat.accumulated, sizeof(stat.accumulated), s_RoundStatsUnpack);
 
-		CDmxElement *pMax = pClass->GetValue< CDmxElement * >( "max" );
-		pMax->UnpackIntoStructure( &stat.max, s_RoundStatsUnpack );
+		CDmxElement *pMax = pClass->GetValue< CDmxElement * >("max");
+		pMax->UnpackIntoStructure(&stat.max, sizeof(stat.max), s_RoundStatsUnpack);
 	}
 
 	CleanupDMX( pPlayerStats );

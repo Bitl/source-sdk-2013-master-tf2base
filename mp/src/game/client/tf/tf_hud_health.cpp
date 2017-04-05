@@ -243,7 +243,7 @@ void CHudArmor::Init()
 	if ( !pTFPlayer )
 		return;
 
-	m_nArmor = pTFPlayer->ArmorValue();
+	//m_nArmor = pTFPlayer->ArmorValue();
 	SetDisplayValue( m_nArmor );
 }
 
@@ -278,7 +278,7 @@ void CHudArmor::OnThink()
 	if ( !pTFPlayer )
 		return;
 
-	m_nArmor = pTFPlayer->ArmorValue();
+	//m_nArmor = pTFPlayer->ArmorValue();
 	SetDisplayValue( m_nArmor );
 }
 
@@ -292,7 +292,7 @@ bool CHudArmor::ShouldDraw()
 		return false;
 
 	// Running the experiment - no armor!
-	return ( pTFPlayer->ArmorValue() != 0 );
+	//return ( pTFPlayer->ArmorValue() != 0 );
 
 	return !pTFPlayer->IsObserver();
 }

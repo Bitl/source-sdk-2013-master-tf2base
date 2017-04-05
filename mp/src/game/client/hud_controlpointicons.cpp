@@ -17,6 +17,7 @@
 #include "c_team.h"
 #include "tf_hud_freezepanel.h"
 #include "tf_hud_objectivestatus.h"
+#include "c_tf_player.h"
 
 //-----------------------------------------------------------------------------
 // Purpose: 
@@ -189,7 +190,7 @@ void CControlPointIcon::ApplySchemeSettings( IScheme *pScheme )
 
 	if ( !m_pCPTimerLabel )
 	{
-		m_pCPTimerLabel = new CExLabel( this, "CPTimerLabel", L"" );
+		m_pCPTimerLabel = new CTFLabel(this, "CPTimerLabel", L"");
 		m_pCPTimerLabel->SetZPos( 0 );
 	}
 
@@ -1794,7 +1795,7 @@ void CControlPointCountdown::ApplySchemeSettings( IScheme *pScheme )
 //-----------------------------------------------------------------------------
 void CControlPointCountdown::PerformLayout()
 {
-	CExLabel *pLabel = dynamic_cast<CExLabel *>( FindChildByName( "CapCountdownLabel" ) );
+	CTFLabel *pLabel = dynamic_cast<CTFLabel *>(FindChildByName("CapCountdownLabel"));
 	if ( pLabel )
 	{
 		pLabel->SetBounds( 0, 0, GetWide(), GetTall() );

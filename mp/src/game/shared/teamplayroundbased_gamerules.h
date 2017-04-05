@@ -106,6 +106,7 @@ enum stalemate_reasons_t
 };
 
 
+/*
 #if defined(TF_CLIENT_DLL) || defined(TF_DLL)
 
 /// Info about a player in a PVE game or any other mode that we
@@ -123,6 +124,7 @@ struct LobbyPlayerInfo_t
 };
 
 #endif
+*/
 
 //-----------------------------------------------------------------------------
 // Purpose: Per-state data
@@ -251,6 +253,7 @@ public:
 
 	virtual int		GetBonusRoundTime( bool bFinal = false );
 
+	/*
 #if defined(TF_CLIENT_DLL) || defined(TF_DLL)
 
 	// Get list of all the players, including those in the lobby but who have
@@ -262,6 +265,7 @@ public:
 	void GetPotentialPlayersLobbyPlayerInfo( CUtlVector<LobbyPlayerInfo_t> &vecLobbyPlayers, bool bIncludeBots = false );
 
 #endif
+	*/
 
 	void SetAllowBetweenRounds( bool bValue ) { m_bAllowBetweenRounds = bValue; }
 
@@ -406,10 +410,12 @@ protected:
 	bool		 CheckMaxRounds( bool bAllowEnd = true );
 
 	void		 CheckReadyRestart( void );
+	/*
 #if defined(TF_CLIENT_DLL) || defined(TF_DLL)
 	bool		 AreLobbyPlayersOnTeamReady( int iTeam );
 	bool		 AreLobbyPlayersConnected( void );
 #endif
+	*/
 
 	virtual bool CanChangelevelBecauseOfTimeLimit( void ) { return true; }
 	virtual bool CanGoToStalemate( void ) { return true; }

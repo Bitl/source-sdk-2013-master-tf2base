@@ -85,9 +85,9 @@ PRECACHE_WEAPON_REGISTER( tf_weapon_grenade_normal_projectile );
 //-----------------------------------------------------------------------------
 CTFGrenadeNormalProjectile* CTFGrenadeNormalProjectile::Create( const Vector &position, const QAngle &angles, 
 																const Vector &velocity, const AngularImpulse &angVelocity, 
-																CBaseCombatCharacter *pOwner, const CTFWeaponInfo &weaponInfo, float timer, int iFlags )
+																CBaseCombatCharacter *pOwner, const CTFWeaponInfo &weaponInfo, int iFlags )
 {
-	CTFGrenadeNormalProjectile *pGrenade = static_cast<CTFGrenadeNormalProjectile*>( CTFWeaponBaseGrenadeProj::Create( "tf_weapon_grenade_normal_projectile", position, angles, velocity, angVelocity, pOwner, weaponInfo, timer, iFlags ) );
+	CTFGrenadeNormalProjectile *pGrenade = static_cast<CTFGrenadeNormalProjectile*>( CTFWeaponBaseGrenadeProj::Create( "tf_weapon_grenade_normal_projectile", position, angles, velocity, angVelocity, pOwner, weaponInfo, iFlags ) );
 	return pGrenade;
 }
 

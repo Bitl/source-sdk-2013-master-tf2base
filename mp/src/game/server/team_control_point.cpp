@@ -308,6 +308,7 @@ void CTeamControlPoint::HandleScoring( int iTeam )
 		CTeamControlPointMaster *pMaster = g_hControlPointMasters.Count() ? g_hControlPointMasters[0] : NULL;
 		if ( pMaster && !pMaster->WouldNewCPOwnerWinGame( this, iTeam ) )
 		{
+			/*
 #ifdef TF_DLL
 			if ( TeamplayRoundBasedRules()->GetGameType() == TF_GAMETYPE_ESCORT )
 			{
@@ -316,6 +317,7 @@ void CTeamControlPoint::HandleScoring( int iTeam )
 			}
 			else
 #endif
+			*/
 			{
 				CTeamRecipientFilter filter( iTeam );
 				EmitSound( filter, entindex(), "Hud.EndRoundScored" );
@@ -658,12 +660,14 @@ void CTeamControlPoint::InternalSetOwner( int iCapTeam, bool bMakeSound, int iNu
 			CBaseMultiplayerPlayer *pPlayer = ToBaseMultiplayerPlayer( UTIL_PlayerByIndex( playerIndex ) );
 			PlayerCapped( pPlayer );
 
+			/*
 #ifdef TF_DLL
 			if ( TFGameRules() && TFGameRules()->IsHolidayActive( kHoliday_EOTL ) )
 			{
 				TFGameRules()->DropBonusDuck( pPlayer->GetAbsOrigin(), ToTFPlayer( pPlayer ), NULL, NULL, false, true );
 			}
 #endif
+			*/
 		}
 
 		// Remap team to get first game team = 1
